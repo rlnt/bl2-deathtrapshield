@@ -1,0 +1,50 @@
+{
+  "mods": [
+    {
+      "name": "Deathtrap Shield",
+      "authors": "Relentless",
+      "description": [
+        "Gives Deathtrap its own configurable shield from the inventory of Gaige.\n",
+        "\n",
+        "Features:\n",
+        "- Deathtrap can use its own shield and no longer shares the shield with Gaige\n",
+        "- you can define which shield to use in the inventory\n",
+        "- configurable hotkey\n",
+        "\n",
+        "Notes:\n",
+        "- since this is often not the case with SDK mods: yes, this has multiplayer support\n",
+        "- the default behaviour of the skill applies and the shield of Gaige will be shared when:\n",
+        "  - you didn't unlock the skill sharing ability\n",
+        "  - you don't set a Deathtrap shield\n",
+        "  - the shield level is too high; you need to be able to equip it too\n",
+        "  - you equip the Deathtrap shield to Gaige\n",
+        "- the Deathtrap shield will lose its status when:\n",
+        "  - you set a new Deathtrap shield while already having one\n",
+        "  - you equip the Deathtrap shield to Gaige\n",
+        "  - you throw the Deathtrap shield on the ground\n",
+        "  - another character that is not a Mechromancer puts it in their inventory\n",
+        "- you can only set one Deathtrap shield at a time\n",
+        "- only Mechromancers can set Deathtrap shields and see the status\n",
+        "- the hotkey to set the Deathtrap shield can be modified in the modded keybinds\n",
+        "- if you have a Deathtrap shield set, you won't be able to edit your save game in the SaveGame Editor unless you rejoin the game and remove the shield status, this can't be fixed\n",
+        "\n",
+        "Everything related to versions and their release notes can be found in the [changelog](https://github.com/RLNT/bl2_deathtrapshield/blob/main/CHANGELOG.md).\n",
+        "If you found a bug or you have a feature request, please use our issue tracker linked below.\n",
+        "In case you need support, please join our [Discord](https://discordapp.com/invite/Q3qxws6)."
+      ],
+      "tagline": "Gives Deathtrap its own configurable shield from the inventory of Gaige.",
+      "types": ["Utility"],
+      "supports": ["BL2"],
+      "issues": "https://github.com/RLNT/bl2_deathtrapshield/issues",
+      "source": "https://github.com/RLNT/bl2_deathtrapshield",
+      "latest": "1.0.0",
+      "versions": {
+        "1.0.0": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.0.0"
+      },
+      "requirements": {
+        "EridiumLib": ">=0.4.0"
+      },
+      "license": "GNU GPLv3"
+    }
+  ]
+}
