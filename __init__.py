@@ -363,9 +363,14 @@ class DeathtrapShield(SDKMod):
             "Gives [skill]Deathtrap[-skill] a copy of a configurable",
             "[skill]shield[-skill] from your inventory.",
         ]
-        currentDescription: str = unrealsdk.FindObject(
+
+        currentDescriptionObj = unrealsdk.FindObject(
             "SkillDefinition", "GD_Tulip_Mechromancer_Skills.BestFriendsForever.SharingIsCaring"
-        ).SkillDescription
+        )
+        if currentDescriptionObj is None:
+            return True
+        currentDescription: str = currentDescriptionObj.SkillDescription
+
         if currentDescription != " ".join(_skillDescription):
             log(instance, "called")
             caller.ConsoleCommand(
