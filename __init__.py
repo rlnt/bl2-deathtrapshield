@@ -59,7 +59,7 @@ class DeathtrapShield(SDKMod):
     }
     # endregion Mod Info
 
-    _blockFunStats: bool = False
+    _BlockFunStats: bool = False
 
     # region Mod Setup
     def __init__(self) -> None:
@@ -421,7 +421,7 @@ class DeathtrapShield(SDKMod):
         we pass our modified text to it but block it from overwriting.
         """
         caller.SetFunStats(text)
-        self._blockFunStats = True
+        self._BlockFunStats = True
         return True
 
     @Hook("WillowGame.ItemCardGFxObject.SetFunStats")
@@ -432,8 +432,8 @@ class DeathtrapShield(SDKMod):
         Handles blocking the overwriting of item card descriptions if we changed it.
         Credits: apple
         """
-        if self._blockFunStats:
-            self._blockFunStats = False
+        if self._BlockFunStats:
+            self._BlockFunStats = False
             return False
         return True
 
