@@ -1,4 +1,4 @@
-# **Skill Toggles**
+# **Skill Toggles** [![Workflow Status][workflow_status_badge]][workflow_status_link] [![Total Downloads][total_downloads_badge]][total_downloads_link] [![License][license_badge]][license] [![Code Style][black_badge]][black_link]
 
 > A [PythonSDK] mod for [Borderlands 2][borderlands2] to give Deathtrap its own configurable shield from the inventory of Gaige.
 
@@ -50,6 +50,14 @@ Everything related to versions and their release notes can be found in the [chan
 ## **🎓 License**
 This project is licensed under the [GNU GPL v3.0][license].
 
+<!-- Badges -->
+[workflow_status_badge]: https://img.shields.io/github/workflow/status/RLNT/bl2_deathtrapshield/CI?style=flat-square
+[workflow_status_link]: https://github.com/RLNT/bl2_deathtrapshield/actions/workflows/main.yml
+[total_downloads_badge]: https://img.shields.io/github/downloads/RLNT/bl2_deathtrapshield/total?style=flat-square
+[total_downloads_link]: https://github.com/RLNT/bl2_deathtrapshield/releases/latest
+[license_badge]: https://img.shields.io/github/license/RLNT/bl2_deathtrapshield?style=flat-square
+[black_badge]: https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square
+[black_link]: https://github.com/psf/black
 
 <!-- Links -->
 [pythonsdk]: http://borderlandsmodding.com/sdk-mods/
