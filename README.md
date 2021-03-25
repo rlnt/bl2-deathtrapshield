@@ -13,6 +13,21 @@
 - you can define which shield to use in the inventory
 - configurable hotkey
 
+<details>
+    <summary>
+        <strong>Preview (click to expand)</strong>
+    </summary>
+
+<p align="center">
+  <img src="images/card_preview.png" width="400" />
+  <img src="images/skill_preview.png" width="400" />
+</p>
+<p align="center">
+  <img src="images/hotkey_preview.png" width="400" />
+  <img src="images/deathtrap_preview.png" width="400" />
+</p>
+</details>
+
 
 ## **📑 Notes**
 - this is a [PythonSDK] mod, you **can't** install it with BLCMM
