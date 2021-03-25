@@ -22,6 +22,7 @@
         "  - you set a new Deathtrap shield while already having one\n",
         "  - you equip the Deathtrap shield to Gaige\n",
         "  - you throw the Deathtrap shield on the ground\n",
+        "  - you mark it as trash or favorite\n",
         "  - another character that is not a Mechromancer puts it in their inventory\n",
         "- you can only set one Deathtrap shield at a time\n",
         "- only Mechromancers can set Deathtrap shields and see the status\n",

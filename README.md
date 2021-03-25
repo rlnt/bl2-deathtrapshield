@@ -27,6 +27,7 @@
   - you set a new Deathtrap shield while already having one
   - you equip the Deathtrap shield to Gaige
   - you throw the Deathtrap shield on the ground
+  - you mark it as trash or favorite
   - another character that is not a Mechromancer puts it in their inventory
 - you can only set one Deathtrap shield at a time
 - only Mechromancers can set Deathtrap shields and see the status
