@@ -23,7 +23,7 @@ try:
         log,
     )
     from Mods.EridiumLib.keys import KeyBinds
-except (ModuleNotFoundError, ImportError):
+except ImportError:
     webbrowser.open("https://github.com/RLNT/bl2_eridium/blob/main/docs/TROUBLESHOOTING.md")
     raise
 

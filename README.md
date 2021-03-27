@@ -1,4 +1,4 @@
-# **Skill Toggles** [![Workflow Status][workflow_status_badge]][workflow_status_link] [![Total Downloads][total_downloads_badge]][total_downloads_link] [![License][license_badge]][license] [![Code Style][black_badge]][black_link]
+# **Deathtrap Shield** [![Workflow Status][workflow_status_badge]][workflow_status_link] [![Total Downloads][total_downloads_badge]][total_downloads_link] [![License][license_badge]][license] [![Code Style][black_badge]][black_link]
 
 > A [PythonSDK] mod for [Borderlands 2][borderlands2] to give Deathtrap its own configurable shield from the inventory of Gaige.
 
