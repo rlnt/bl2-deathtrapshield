@@ -363,7 +363,6 @@ class DeathtrapShield(SDKMod):
         currentDescription: str = currentDescriptionObj.SkillDescription
 
         if currentDescription != " ".join(_skillDescription):
-            log(instance, "called")
             caller.ConsoleCommand(
                 "set SkillDefinition'GD_Tulip_Mechromancer_Skills.BestFriendsForever."
                 "SharingIsCaring' SkillDescription " + " ".join(_skillDescription)
