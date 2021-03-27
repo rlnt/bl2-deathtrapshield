@@ -16,15 +16,15 @@ from Mods.ModMenu import (
 
 try:
     from Mods.EridiumLib import (
-        getLatestVersion,
+        checkLibraryVersion,
+        checkModVersion,
         getSkillManager,
         getVaultHunterClassName,
-        isLatestRelease,
         log,
     )
     from Mods.EridiumLib.keys import KeyBinds
-except ModuleNotFoundError or ImportError:
-    webbrowser.open("https://github.com/RLNT/bl2_eridium#-troubleshooting")
+except (ModuleNotFoundError, ImportError):
+    webbrowser.open("https://github.com/RLNT/bl2_eridium/blob/main/docs/TROUBLESHOOTING.md")
     raise
 
 if __name__ == "__main__":
@@ -73,20 +73,11 @@ class DeathtrapShield(SDKMod):
 
     def Enable(self) -> None:
         super().Enable()
-        log(self, f"Version: {self.Version}")
 
-        """
-        Version Checking
-        """
-        latest_version = getLatestVersion("RLNT/bl2_deathtrapshield")
-        log(
-            self,
-            f"Latest release tag: {latest_version}",
-        )
-        if isLatestRelease(latest_version, self.Version):
-            log(self, "Up-to-date")
-        else:
-            log(self, "There is a newer version available {latest_version}")
+        if not checkLibraryVersion(self._EridiumVersion):
+            raise RuntimeWarning("Incompatible EridiumLib version!")
+
+        checkModVersion(self, "RLNT/bl2_deathtrapshield")
 
     def SettingsInputPressed(self, action: str) -> None:
         """
