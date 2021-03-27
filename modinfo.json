@@ -38,12 +38,13 @@
       "supports": ["BL2"],
       "issues": "https://github.com/RLNT/bl2_deathtrapshield/issues",
       "source": "https://github.com/RLNT/bl2_deathtrapshield",
-      "latest": "1.0.0",
+      "latest": "1.0.1",
       "versions": {
+        "1.0.1": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.0.1",
         "1.0.0": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.0.0"
       },
       "requirements": {
-        "EridiumLib": ">=0.4.0"
+        "EridiumLib": ">=0.4.1"
       },
       "license": "GNU GPLv3"
     }
