@@ -257,6 +257,27 @@ class DeathtrapShield(SDKMod):
         # don't call the original function since we handled everything ourselves
         return False
 
+    @Hook("WillowGame.InventoryListPanelGFxObject.extOnTrashFavChanged")
+    def _extOnTrashFavChanged(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        """
+        Prevents setting the DT shield as trash or favorite.
+        """
+        item: unrealsdk.UObject = caller.GetSelectedThing()
+        oldMark: int = item.GetMark()
+
+        if item is None:
+            return True
+
+        if self._isValidShield(item) is True and oldMark == 3:
+            item.SetMark(3)
+            caller.OwningMovie.PlayUISound("ResultFailure")
+            caller.OwningMovie.RefreshInventoryScreen(True)
+            return False
+
+        return True
+
     # endregion Item Handling
 
     # region Hotkey Handling
