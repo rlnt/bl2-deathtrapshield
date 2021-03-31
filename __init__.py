@@ -304,6 +304,7 @@ class DeathtrapShield(SDKMod):
 
             # make sure the shield isn't overlevelled
             if item.CanBeUsedBy(playerController.Pawn) is False:
+                caller.ParentMovie.PlayUISound("ResultFailure")
                 return True
 
             # save the state so it doesn't switch to the first item again
@@ -311,8 +312,10 @@ class DeathtrapShield(SDKMod):
 
             if item.GetMark() == 3:
                 item.SetMark(1)
+                caller.ParentMovie.PlayUISound("UnEquip")
             else:
                 item.SetMark(3)
+                caller.ParentMovie.PlayUISound("FinishEquip")
                 self._resetAllShields(item, playerController.MyWillowPawn)
 
             # refresh the inventory screen
