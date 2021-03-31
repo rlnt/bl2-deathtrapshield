@@ -62,8 +62,8 @@ class DeathtrapShield(SDKMod):
 
     _BlockFunStats: bool = False
     _BlockTitle: bool = False
-    _RarityColorTuple: Tuple[int, int, int, int] = (179, 0, 255, 255)
-    _RarityColorHex: str = "#FF00B3"
+    _RarityColorTuple: Tuple[int, int, int, int] = (166, 40, 255, 255)
+    _RarityColorHex: str = "#FF28A6"
 
     # region Mod Setup
     def __init__(self) -> None:
