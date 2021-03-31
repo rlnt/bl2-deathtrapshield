@@ -61,6 +61,7 @@ class DeathtrapShield(SDKMod):
     # endregion Mod Info
 
     _BlockFunStats: bool = False
+    _BlockTitle: bool = False
 
     # region Mod Setup
     def __init__(self) -> None:
@@ -417,16 +418,37 @@ class DeathtrapShield(SDKMod):
         if text is None:
             text = ""
 
-        text += '<font color="#00FF9C">'
+        text += '<font color="#FF00B3">'
         text += "• Current Deathtrap Shield"
         text += "</font>"
 
         """
         The hooked function is pretty complex so before replicating its logic,
         we pass our modified text to it but block it from overwriting.
+        We also overwrite the rarity color here and also block the overwrite.
+        Color format is BGRA in a tuple.
         """
         caller.SetFunStats(text)
         self._BlockFunStats = True
+        caller.SetTitle(
+            item.GetManufacturer().FlashLabelName,
+            item.GetShortHumanReadableName(),
+            (179, 0, 255, 255),
+            item.GetZippyFrame(),
+            item.GetElementalFrame(),
+            item.IsReadied(),
+        )
+        self._BlockTitle = True
+        return True
+
+    @Hook("WillowGame.ItemCardGFxObject.SetTitle")
+    def _setTitle(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        if self._BlockTitle:
+            self._BlockTitle = False
+            log(instance, f"color: {params.Rarity}")
+            return False
         return True
 
     @Hook("WillowGame.ItemCardGFxObject.SetFunStats")
