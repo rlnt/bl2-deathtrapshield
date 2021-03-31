@@ -154,6 +154,37 @@ class DeathtrapShield(SDKMod):
 
     # endregion Helper Functions
 
+    # region Console Commands
+    @Hook("Engine.GameInfo.PreCommitMapChange")
+    def _showStatusMenu(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        """
+        Handles executing Console Commands since there is a string bug which
+        messes with some stuff we want to do here.
+        https://github.com/bl-sdk/PythonSDK/issues/28
+        We use PrecommitMapChange as it's only fired once for each character
+        when filtering the parameters correctly.
+        """
+
+        # make sure this is only executed once when joining the game
+        if params.PreviousMapName != "Loader":
+            return True
+
+        # edit the skill description of the shield sharing ability
+        _skillDescription: List[str] = [
+            "Gives [skill]Deathtrap[-skill] a copy of a configurable",
+            "[skill]shield[-skill] from your inventory.",
+        ]
+        caller.ConsoleCommand(
+            "set SkillDefinition'GD_Tulip_Mechromancer_Skills.BestFriendsForever."
+            "SharingIsCaring' SkillDescription " + " ".join(_skillDescription)
+        )
+
+        return True
+
+    # endregion Console Commands
+
     # region Item Handling
     @Hook("WillowGame.DeathtrapActionSkill.TryToShareShields")
     def _tryToShareShields(
@@ -340,36 +371,6 @@ class DeathtrapShield(SDKMod):
         """
         caller.SetTooltipText(result)
         return False
-
-    @Hook("WillowGame.WillowPlayerController.ShowStatusMenu")
-    def _showStatusMenu(
-        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
-    ) -> bool:
-        """
-        Handles executing Console Commands since there is a string bug.
-        https://github.com/bl-sdk/PythonSDK/issues/28
-        """
-
-        # edit the skill description of the shield sharing ability
-        _skillDescription: List[str] = [
-            "Gives [skill]Deathtrap[-skill] a copy of a configurable",
-            "[skill]shield[-skill] from your inventory.",
-        ]
-
-        currentDescriptionObj = unrealsdk.FindObject(
-            "SkillDefinition", "GD_Tulip_Mechromancer_Skills.BestFriendsForever.SharingIsCaring"
-        )
-        if currentDescriptionObj is None:
-            return True
-        currentDescription: str = currentDescriptionObj.SkillDescription
-
-        if currentDescription != " ".join(_skillDescription):
-            caller.ConsoleCommand(
-                "set SkillDefinition'GD_Tulip_Mechromancer_Skills.BestFriendsForever."
-                "SharingIsCaring' SkillDescription " + " ".join(_skillDescription)
-            )
-
-        return True
 
     @Hook("WillowGame.ItemCardGFxObject.SetItemCardEx")
     def _setItemCardEx(
