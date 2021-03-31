@@ -301,6 +301,10 @@ class DeathtrapShield(SDKMod):
             if self._isValidShield(item) is False:
                 return True
 
+            # make sure the shield isn't overlevelled
+            if item.CanBeUsedBy(playerController.Pawn) is False:
+                return True
+
             # save the state so it doesn't switch to the first item again
             caller.BackpackPanel.SaveState()
 
@@ -352,6 +356,10 @@ class DeathtrapShield(SDKMod):
         # only change the text if the item is a valid shield
         item: unrealsdk.UObject = caller.GetSelectedThing()
         if self._isValidShield(item) is False:
+            return True
+
+        # make sure the shield isn't overlevelled
+        if item.CanBeUsedBy(playerController.Pawn) is False:
             return True
 
         """
