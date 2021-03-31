@@ -1,6 +1,6 @@
 import unrealsdk
 import webbrowser
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from Mods.ModMenu import (
     EnabledSaveType,
@@ -62,6 +62,8 @@ class DeathtrapShield(SDKMod):
 
     _BlockFunStats: bool = False
     _BlockTitle: bool = False
+    _RarityColorTuple: Tuple[int, int, int, int] = (179, 0, 255, 255)
+    _RarityColorHex: str = "#FF00B3"
 
     # region Mod Setup
     def __init__(self) -> None:
@@ -421,7 +423,7 @@ class DeathtrapShield(SDKMod):
         if text is None:
             text = ""
 
-        text += '<font color="#FF00B3">'
+        text += f'<font color="{self._RarityColorHex}">'
         text += "• Current Deathtrap Shield"
         text += "</font>"
 
@@ -436,7 +438,7 @@ class DeathtrapShield(SDKMod):
         caller.SetTitle(
             item.GetManufacturer().FlashLabelName,
             item.GetShortHumanReadableName(),
-            (179, 0, 255, 255),
+            self._RarityColorTuple,
             item.GetZippyFrame(),
             item.GetElementalFrame(),
             item.IsReadied(),
@@ -450,7 +452,6 @@ class DeathtrapShield(SDKMod):
     ) -> bool:
         if self._BlockTitle:
             self._BlockTitle = False
-            log(instance, f"color: {params.Rarity}")
             return False
         return True
 
