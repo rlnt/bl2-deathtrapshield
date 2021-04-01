@@ -35,18 +35,21 @@
 - this mod needs the [EridiumLib] in order to run
 - since this is often not the case with SDK mods: yes, this has multiplayer support
 - the default behaviour of the skill applies and the shield of Gaige will be shared when:
-  - you didn't unlock the skill sharing ability
   - you don't set a Deathtrap shield
-  - the shield level is too high; you need to be able to equip it too
   - you equip the Deathtrap shield to Gaige
 - the Deathtrap shield will lose its status when:
   - you set a new Deathtrap shield while already having one
   - you equip the Deathtrap shield to Gaige
   - you throw the Deathtrap shield on the ground
-  - you mark it as trash or favorite
   - another character that is not a Mechromancer puts it in their inventory
-- you can only set one Deathtrap shield at a time
-- only Mechromancers can set Deathtrap shields and see the status
+- you can't set shields as Deathtrap shield when:
+  - the level of the shield is too high (if you can't equip it yourself)
+  - you are not Mechromancer
+- other useful information:
+  - this only works if you unlocked the `Sharing is Caring` skill
+  - you can only set one Deathtrap shield at a time
+  - you can't set a Deathtrap shield as trash or favorite (unset it first)
+  - the Deathtrap shield will have another color
 - the hotkey to set the Deathtrap shield can be modified in the modded keybinds
 - if you have a Deathtrap shield set, you won't be able to edit your save game in the SaveGame Editor unless you rejoin the game and remove the shield status, this can't be fixed
 

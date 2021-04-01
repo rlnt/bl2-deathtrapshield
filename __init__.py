@@ -46,7 +46,7 @@ class DeathtrapShield(SDKMod):
     Name: str = "Deathtrap Shield"
     Author: str = "Relentless"
     Description: str = "Gives Deathtrap its own configurable shield from the inventory of Gaige."
-    Version: str = "1.0.1"
+    Version: str = "1.1.0"
     _EridiumVersion: str = "0.4.1"
 
     SupportedGames: Game = Game.BL2

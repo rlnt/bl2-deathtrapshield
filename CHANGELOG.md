@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Released]
 
+## [1.1.0] - 2021-04-01
+
+### Added
+- checks to prevent setting overlevelled shields as DT shield
+- checks to prevent favoriting or trashing the DT shield
+- new rarity color on the item card of the DT shield
+- several feedback sounds
+
+### Changed
+- improved console command execution
+
+
 ## [1.0.1] - 2021-03-27
 
 ### Added
@@ -35,5 +47,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 <!-- Versions -->
 [unreleased]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.0...HEAD
 [released]: https://github.com/RLNT/bl2_deathtrapshield/releases
+[1.1.0]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.1..v1.1.0
 [1.0.1]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/RLNT/bl2_deathtrapshield/releases/v1.0.0
