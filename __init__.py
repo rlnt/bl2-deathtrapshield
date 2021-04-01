@@ -1,6 +1,6 @@
 import unrealsdk
 import webbrowser
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from Mods.ModMenu import (
     EnabledSaveType,
@@ -46,7 +46,7 @@ class DeathtrapShield(SDKMod):
     Name: str = "Deathtrap Shield"
     Author: str = "Relentless"
     Description: str = "Gives Deathtrap its own configurable shield from the inventory of Gaige."
-    Version: str = "1.0.1"
+    Version: str = "1.1.0"
     _EridiumVersion: str = "0.4.1"
 
     SupportedGames: Game = Game.BL2
@@ -61,6 +61,9 @@ class DeathtrapShield(SDKMod):
     # endregion Mod Info
 
     _BlockFunStats: bool = False
+    _BlockTitle: bool = False
+    _RarityColorTuple: Tuple[int, int, int, int] = (166, 40, 255, 255)
+    _RarityColorHex: str = "#FF28A6"
 
     # region Mod Setup
     def __init__(self) -> None:
@@ -154,6 +157,37 @@ class DeathtrapShield(SDKMod):
 
     # endregion Helper Functions
 
+    # region Console Commands
+    @Hook("Engine.GameInfo.PreCommitMapChange")
+    def _showStatusMenu(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        """
+        Handles executing Console Commands since there is a string bug which
+        messes with some stuff we want to do here.
+        https://github.com/bl-sdk/PythonSDK/issues/28
+        We use PrecommitMapChange as it's only fired once for each character
+        when filtering the parameters correctly.
+        """
+
+        # make sure this is only executed once when joining the game
+        if params.PreviousMapName != "Loader":
+            return True
+
+        # edit the skill description of the shield sharing ability
+        _skillDescription: List[str] = [
+            "Gives [skill]Deathtrap[-skill] a copy of a configurable",
+            "[skill]shield[-skill] from your inventory.",
+        ]
+        caller.ConsoleCommand(
+            "set SkillDefinition'GD_Tulip_Mechromancer_Skills.BestFriendsForever."
+            "SharingIsCaring' SkillDescription " + " ".join(_skillDescription)
+        )
+
+        return True
+
+    # endregion Console Commands
+
     # region Item Handling
     @Hook("WillowGame.DeathtrapActionSkill.TryToShareShields")
     def _tryToShareShields(
@@ -223,6 +257,27 @@ class DeathtrapShield(SDKMod):
         # don't call the original function since we handled everything ourselves
         return False
 
+    @Hook("WillowGame.InventoryListPanelGFxObject.extOnTrashFavChanged")
+    def _extOnTrashFavChanged(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        """
+        Prevents setting the DT shield as trash or favorite.
+        """
+        item: unrealsdk.UObject = caller.GetSelectedThing()
+        oldMark: int = item.GetMark()
+
+        if item is None:
+            return True
+
+        if self._isValidShield(item) is True and oldMark == 3:
+            item.SetMark(3)
+            caller.OwningMovie.PlayUISound("ResultFailure")
+            caller.OwningMovie.RefreshInventoryScreen(True)
+            return False
+
+        return True
+
     # endregion Item Handling
 
     # region Hotkey Handling
@@ -270,13 +325,20 @@ class DeathtrapShield(SDKMod):
             if self._isValidShield(item) is False:
                 return True
 
+            # make sure the shield isn't overlevelled
+            if item.CanBeUsedBy(playerController.Pawn) is False:
+                caller.ParentMovie.PlayUISound("ResultFailure")
+                return True
+
             # save the state so it doesn't switch to the first item again
             caller.BackpackPanel.SaveState()
 
             if item.GetMark() == 3:
                 item.SetMark(1)
+                caller.ParentMovie.PlayUISound("UnEquip")
             else:
                 item.SetMark(3)
+                caller.ParentMovie.PlayUISound("FinishEquip")
                 self._resetAllShields(item, playerController.MyWillowPawn)
 
             # refresh the inventory screen
@@ -323,6 +385,10 @@ class DeathtrapShield(SDKMod):
         if self._isValidShield(item) is False:
             return True
 
+        # make sure the shield isn't overlevelled
+        if item.CanBeUsedBy(playerController.Pawn) is False:
+            return True
+
         """
         Get the original hotkey text and append our hotkey.
         The hotkey text changes depending if it's already set as DT shield.
@@ -340,36 +406,6 @@ class DeathtrapShield(SDKMod):
         """
         caller.SetTooltipText(result)
         return False
-
-    @Hook("WillowGame.WillowPlayerController.ShowStatusMenu")
-    def _showStatusMenu(
-        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
-    ) -> bool:
-        """
-        Handles executing Console Commands since there is a string bug.
-        https://github.com/bl-sdk/PythonSDK/issues/28
-        """
-
-        # edit the skill description of the shield sharing ability
-        _skillDescription: List[str] = [
-            "Gives [skill]Deathtrap[-skill] a copy of a configurable",
-            "[skill]shield[-skill] from your inventory.",
-        ]
-
-        currentDescriptionObj = unrealsdk.FindObject(
-            "SkillDefinition", "GD_Tulip_Mechromancer_Skills.BestFriendsForever.SharingIsCaring"
-        )
-        if currentDescriptionObj is None:
-            return True
-        currentDescription: str = currentDescriptionObj.SkillDescription
-
-        if currentDescription != " ".join(_skillDescription):
-            caller.ConsoleCommand(
-                "set SkillDefinition'GD_Tulip_Mechromancer_Skills.BestFriendsForever."
-                "SharingIsCaring' SkillDescription " + " ".join(_skillDescription)
-            )
-
-        return True
 
     @Hook("WillowGame.ItemCardGFxObject.SetItemCardEx")
     def _setItemCardEx(
@@ -408,16 +444,36 @@ class DeathtrapShield(SDKMod):
         if text is None:
             text = ""
 
-        text += '<font color="#00FF9C">'
+        text += f'<font color="{self._RarityColorHex}">'
         text += "• Current Deathtrap Shield"
         text += "</font>"
 
         """
         The hooked function is pretty complex so before replicating its logic,
         we pass our modified text to it but block it from overwriting.
+        We also overwrite the rarity color here and also block the overwrite.
+        Color format is BGRA in a tuple.
         """
         caller.SetFunStats(text)
         self._BlockFunStats = True
+        caller.SetTitle(
+            item.GetManufacturer().FlashLabelName,
+            item.GetShortHumanReadableName(),
+            self._RarityColorTuple,
+            item.GetZippyFrame(),
+            item.GetElementalFrame(),
+            item.IsReadied(),
+        )
+        self._BlockTitle = True
+        return True
+
+    @Hook("WillowGame.ItemCardGFxObject.SetTitle")
+    def _setTitle(
+        self, caller: unrealsdk.UObject, function: unrealsdk.UFunction, params: unrealsdk.FStruct
+    ) -> bool:
+        if self._BlockTitle:
+            self._BlockTitle = False
+            return False
         return True
 
     @Hook("WillowGame.ItemCardGFxObject.SetFunStats")
