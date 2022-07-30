@@ -37,14 +37,15 @@
       "supports": ["BL2"],
       "issues": "https://github.com/DAmNRelentless/bl2-deathtrapshield/issues",
       "source": "https://github.com/DAmNRelentless/bl2-deathtrapshield",
-      "latest": "1.1.0",
+      "latest": "1.1.1",
       "versions": {
+        "1.1.1": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.1.1",
         "1.1.0": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.1.0",
         "1.0.1": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.0.1",
         "1.0.0": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.0.0"
       },
       "requirements": {
-        "EridiumLib": ">=0.4.1"
+        "EridiumLib": ">=0.4.2"
       },
       "license": "GNU GPLv3"
     }
