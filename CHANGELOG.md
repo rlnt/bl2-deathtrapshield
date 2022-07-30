@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - /
 
 
+## [1.1.1] - 2022-07-30
+
+### Changed
+- repository relocation
+
+
 ## [1.1.0] - 2021-04-01
 
 ### Added
@@ -42,8 +48,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [semantic versioning]: https://semver.org/
 
 <!-- Versions -->
-[unreleased]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.0...HEAD
-[released]: https://github.com/DAmNRelentless/bl2-deathtrapshield/releases
+[unreleased]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.1.0..v1.1.1
 [1.1.0]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.1..v1.1.0
 [1.0.1]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/v1.0.0
