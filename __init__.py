@@ -24,7 +24,9 @@ try:
     )
     from Mods.EridiumLib.keys import KeyBinds
 except ImportError:
-    webbrowser.open("https://github.com/DAmNRelentless/bl2-eridiumlib/blob/main/docs/TROUBLESHOOTING.md")
+    webbrowser.open(
+        "https://github.com/DAmNRelentless/bl2-eridiumlib/blob/main/docs/TROUBLESHOOTING.md"
+    )
     raise
 
 if __name__ == "__main__":
