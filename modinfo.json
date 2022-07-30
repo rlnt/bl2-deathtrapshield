@@ -29,20 +29,19 @@
         "- the hotkey to set the Deathtrap shield can be modified in the modded keybinds\n",
         "- if you have a Deathtrap shield set, you won't be able to edit your save game in the SaveGame Editor unless you rejoin the game and remove the shield status, this can't be fixed\n",
         "\n",
-        "Everything related to versions and their release notes can be found in the [changelog](https://github.com/RLNT/bl2_deathtrapshield/blob/main/CHANGELOG.md).\n",
-        "If you found a bug or you have a feature request, please use our issue tracker linked below.\n",
-        "In case you need support, please join our [Discord](https://discordapp.com/invite/Q3qxws6)."
+        "Everything related to versions and their release notes can be found in the [changelog](https://github.com/DAmNRelentless/bl2-deathtrapshield/blob/main/CHANGELOG.md).\n",
+        "If you found a bug or you have a feature request, please use our issue tracker linked below."
       ],
       "tagline": "Gives Deathtrap its own configurable shield from the inventory of Gaige.",
       "types": ["Utility"],
       "supports": ["BL2"],
-      "issues": "https://github.com/RLNT/bl2_deathtrapshield/issues",
-      "source": "https://github.com/RLNT/bl2_deathtrapshield",
+      "issues": "https://github.com/DAmNRelentless/bl2-deathtrapshield/issues",
+      "source": "https://github.com/DAmNRelentless/bl2-deathtrapshield",
       "latest": "1.1.0",
       "versions": {
-        "1.1.0": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.1.0",
-        "1.0.1": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.0.1",
-        "1.0.0": "https://github.com/RLNT/bl2_deathtrapshield/releases/tag/v1.0.0"
+        "1.1.0": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.1.0",
+        "1.0.1": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.0.1",
+        "1.0.0": "https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/tag/v1.0.0"
       },
       "requirements": {
         "EridiumLib": ">=0.4.1"

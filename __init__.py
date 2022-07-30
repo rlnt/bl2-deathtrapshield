@@ -24,7 +24,7 @@ try:
     )
     from Mods.EridiumLib.keys import KeyBinds
 except ImportError:
-    webbrowser.open("https://github.com/RLNT/bl2_eridium/blob/main/docs/TROUBLESHOOTING.md")
+    webbrowser.open("https://github.com/DAmNRelentless/bl2-eridiumlib/blob/main/docs/TROUBLESHOOTING.md")
     raise
 
 if __name__ == "__main__":
@@ -56,7 +56,6 @@ class DeathtrapShield(SDKMod):
     SettingsInputs: Dict[str, str] = {
         KeyBinds.Enter.value: "Enable",
         KeyBinds.G.value: "GitHub",
-        KeyBinds.D.value: "Discord",
     }
     # endregion Mod Info
 
@@ -81,16 +80,14 @@ class DeathtrapShield(SDKMod):
         if not checkLibraryVersion(self._EridiumVersion):
             raise RuntimeWarning("Incompatible EridiumLib version!")
 
-        checkModVersion(self, "RLNT/bl2_deathtrapshield")
+        checkModVersion(self, "DAmNRelentless/bl2-deathtrapshield")
 
     def SettingsInputPressed(self, action: str) -> None:
         """
         Handles the hotkey input in the Mod Menu.
         """
         if action == "GitHub":
-            webbrowser.open("https://github.com/RLNT/bl2_deathtrapshield")
-        elif action == "Discord":
-            webbrowser.open("https://discord.com/invite/Q3qxws6")
+            webbrowser.open("https://github.com/DAmNRelentless/bl2-deathtrapshield")
         else:
             super().SettingsInputPressed(action)
 

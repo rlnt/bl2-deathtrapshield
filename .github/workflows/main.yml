@@ -33,7 +33,7 @@ jobs:
       - name: Clone EridiumLib
         uses: actions/checkout@v2
         with:
-          repository: RLNT/bl2_eridium
+          repository: DAmNRelentless/bl2-eridiumlib
           path: PythonSDK/Mods/EridiumLib
 
       - name: Install dependencies

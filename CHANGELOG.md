@@ -8,9 +8,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 - /
 
----
-
-## [Released]
 
 ## [1.1.0] - 2021-04-01
 
@@ -45,8 +42,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [semantic versioning]: https://semver.org/
 
 <!-- Versions -->
-[unreleased]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.0...HEAD
-[released]: https://github.com/RLNT/bl2_deathtrapshield/releases
-[1.1.0]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.1..v1.1.0
-[1.0.1]: https://github.com/RLNT/bl2_deathtrapshield/compare/v1.0.0..v1.0.1
-[1.0.0]: https://github.com/RLNT/bl2_deathtrapshield/releases/v1.0.0
+[unreleased]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.0...HEAD
+[released]: https://github.com/DAmNRelentless/bl2-deathtrapshield/releases
+[1.1.0]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.1..v1.1.0
+[1.0.1]: https://github.com/DAmNRelentless/bl2-deathtrapshield/compare/v1.0.0..v1.0.1
+[1.0.0]: https://github.com/DAmNRelentless/bl2-deathtrapshield/releases/v1.0.0
